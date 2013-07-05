@@ -1,0 +1,92 @@
+{% extends 'silpa.html' %}
+{% block modulescript %}
+<script type="text/javascript">
+  $(document).ready(function(){
+  $("form").submit(function(event){
+  event.preventDefault();
+  fortune(this);
+  });
+
+  });
+
+  function fortune(form)
+  {
+
+  var pattern = form.input_text.value;
+  var collection = form.database.value;
+  var jsonRequest = {
+  "method" :  "fortune.fortune",
+  "params" : [collection,pattern],
+  "id" : ""
+  };
+  $.ajax({
+  type: "POST",
+  contentType: "application/json; charset=utf-8",
+  url: "JSONRPC",
+  data: JSON.stringify(jsonRequest),
+  dataType: "json",
+  beforeSend:function(){
+    $("#error").hide();
+  $("#result").hide();
+  $('#progress') .html("Please Wait...");
+
+  },
+  success: function(msg) {
+  var result = msg.result.replace("\n", "&#13;");
+  $('#progress').hide();
+  // Render it
+  $('#result') .html("<b>"+ result + "</b>").show();
+  },
+  error: function(msg){
+  $("#error").html("Something went wrong...").show();
+  $('#progress') .hide();
+  }});
+  1}
+</script>
+{% endblock %}
+{% block content %}
+
+<div class="well">
+  <h2>Fortune Cookies (Random Quotes)</h2></hr>
+ Enter the text for getting a random quote with the given string in the below text area.
+    <form action=""  >
+    <fieldset>
+  <label>Search word(optional)</label><input type="text" class="span4" name='input_text' id='input_text'  />
+  <label>Collection :</label>
+  <select id="database" name="dictionary" class="span4 clearfix" styl4e="width:12em;">
+    <option value="malayalam_proverbs">Proverbs - Malayalam</option>
+    <option value="thirukkural">Thirukkural - Tamil and English</option>
+    <option value="chanakya">Chanakya - English</option>
+  </select>
+  <br/>
+<input  type="submit" id="Fortune" value="Get the quote" class="btn btn-primary"/>
+
+        </br>
+</fieldset>
+        </form>
+  <hr/>
+  <div class="hide alert alert-info"id="progress"></div>
+  <div class="hide alert alert-success"id="successmessage"></div>
+  <div class="hide alert alert-error"id="error"></div>
+  <div class="hide alert alert-success "id="result"></div></div>
+<div class="well">
+<h3>Python fortune API</h3>
+  This service provides random quotes
+  <ul>
+    <li>Method: modules.Fortune.fortune
+      <ul>
+        <li>arg1 : database file name</li>
+        <li>arg2 : Search word(optional)</li>
+        <li>Return : Random quote</li>
+      </ul>
+      <pre class="code">
+        >>>print fortune.fortune('chanakya')
+        Do not inhabit a country where you are not respected,\n cannot earn your
+        livelihood,have no friends, or cannot\n acquire knowledge.\n"
+        >>>print fortune.fortune('chanakya','charity')
+        " The good habits of charity, learning and austerity\n practised during
+        many past lives continue to be cultivated\n in this birth by virtue of
+        the link (yoga) of this present\n life to the previous ones.\n"
+      </pre>
+</div>
+{% endblock %}
