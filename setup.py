@@ -3,7 +3,7 @@
 
 from setuptools import setup, find_packages
 
-name = "fortune"
+name = "indicfortune"
 
 setup(
     name=name,
