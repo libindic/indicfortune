@@ -28,6 +28,9 @@ from silpa_common import *
 
 
 class Fortune:
+    """
+    The fortune class. Instantiate to get access to the methods.
+    """
     def fortunes(self, infile, pattern=None):
         """ Yield fortunes as lists of lines """
         quotes = []
@@ -48,11 +51,11 @@ class Fortune:
         return quotes
 
     def fortune(self, database, pattern=None):
+        """ Pick a random fortune from a file """
         filename = os.path.join(os.path.dirname(__file__),
                                 'database', database + ".dic")
         fortunes_file = codecs. open(filename,
                                      encoding='utf-8', errors='ignore')
-        """ Pick a random fortune from a file """
         fortunes_list = self.fortunes(fortunes_file, pattern)
         chosen = ""
         if fortunes_list:
@@ -60,9 +63,15 @@ class Fortune:
         return "".join(chosen)
 
     def get_module_name(self):
+        """
+        returns the module name.
+        """
         return "Fortune Cookies"
 
     def get_info(self):
+        """
+        returns info on the module
+        """
         return "Get/Search a random quote "
 
 
