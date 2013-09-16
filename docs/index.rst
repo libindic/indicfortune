@@ -13,6 +13,13 @@ API reference
 
 .. automodule:: indicfortune.core
    :members:
+   
+Available fortune databases
+----------------------------
+
+* chanakya
+* malayalam_proverbs
+* thirukkural
 
 
 Indices and tables
