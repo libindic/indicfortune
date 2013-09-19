@@ -8,12 +8,23 @@ indicfortune
 
 A fortune cookie database and  generator for indic languages.
 
+Usage
+-----
+
+ >>> from indicfortune getInstance
+ >>> f = getInstance()
+ >>> f.fortune('chanakya')
+ u' The beauty of a cuckoo is in its notes, that
+ of a woman\n in her unalloyed devotion to her husband, that of an\n
+ ugly person in his scholarship, and that of an ascetic\n in his
+ forgiveness.\n'
+
 API reference
 ------------
 
 .. automodule:: indicfortune.core
    :members:
-   
+
 Available fortune databases
 ----------------------------
 
@@ -28,4 +39,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
