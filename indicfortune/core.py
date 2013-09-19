@@ -24,7 +24,6 @@
 import random
 import codecs
 import os
-from silpa_common import *
 
 
 class Fortune:
@@ -76,4 +75,7 @@ class Fortune:
 
 
 def getInstance():
+    """
+    returns an instance of the fortune class.
+    """
     return Fortune()
