@@ -7,7 +7,7 @@ name = "indicfortune"
 
 setup(
     name=name,
-    version="0.1",
+    version="0.2",
     license="LGPL-3.0",
     description="Returns random quotes.",
     author="Santhosh Thottingal",
