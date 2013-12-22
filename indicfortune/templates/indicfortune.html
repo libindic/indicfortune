@@ -2,46 +2,43 @@
 {% block modulescript %}
 <script type="text/javascript">
   $(document).ready(function(){
-  $("form").submit(function(event){
-  event.preventDefault();
-  fortune(this);
+    $("form").submit(function(event){
+      event.preventDefault();
+      var jsonRequest = {
+          method: "indicfortune.fortune",
+          params: [
+            this.database.value,
+            this.input_text.value,
+            ],
+          id: ""
+        },
+        idError = $("#error"),
+        idResult = $("#result"),
+        idProgress = $("#progress");
+
+      $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "JSONRPC",
+        data: JSON.stringify(jsonRequest),
+        dataType: "json",
+        beforeSend:function(){
+          idError.hide();
+          idResult.hide();
+          idProgress.html("Please Wait...");
+        },
+        success: function(msg) {
+          var result = msg.result.replace("\n", "&#13;");
+          idProgress.hide();
+          idResult.html(result).show();
+        },
+        error: function(msg){
+          idError.html("Something went wrong...").show();
+          idProgress.hide();
+        }
+      });
+    });
   });
-
-  });
-
-  function fortune(form)
-  {
-
-  var pattern = form.input_text.value;
-  var collection = form.database.value;
-  var jsonRequest = {
-  "method" :  "indicfortune.fortune",
-  "params" : [collection,pattern],
-  "id" : ""
-  };
-  $.ajax({
-  type: "POST",
-  contentType: "application/json; charset=utf-8",
-  url: "JSONRPC",
-  data: JSON.stringify(jsonRequest),
-  dataType: "json",
-  beforeSend:function(){
-    $("#error").hide();
-  $("#result").hide();
-  $('#progress') .html("Please Wait...");
-
-  },
-  success: function(msg) {
-  var result = msg.result.replace("\n", "&#13;");
-  $('#progress').hide();
-  // Render it
-  $('#result') .html("<b>"+ result + "</b>").show();
-  },
-  error: function(msg){
-  $("#error").html("Something went wrong...").show();
-  $('#progress') .hide();
-  }});
-  1}
 </script>
 {% endblock %}
 {% block content %}
