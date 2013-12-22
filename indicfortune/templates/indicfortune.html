@@ -30,7 +30,11 @@
         success: function(msg) {
           var result = msg.result.replace("\n", "&#13;");
           idProgress.hide();
-          idResult.html(result).show();
+          if(result !== "") {
+            idResult.html(result).show();
+          } else {
+            idError.html("We couldn't find any search results").show();
+          }
         },
         error: function(msg){
           idError.html("Something went wrong...").show();
@@ -43,31 +47,41 @@
 {% endblock %}
 {% block content %}
 
-<div class="well">
-  <h2>Fortune Cookies (Random Quotes)</h2></hr>
- Enter the text for getting a random quote with the given string in the below text area.
-    <form action=""  >
-    <fieldset>
-  <label>Search word(optional)</label><input type="text" class="span4" name='input_text' id='input_text'  />
-  <label>Collection :</label>
-  <select id="database" name="dictionary" class="span4 clearfix" styl4e="width:12em;">
-    <option value="malayalam_proverbs">Proverbs - Malayalam</option>
-    <option value="thirukkural">Thirukkural - Tamil and English</option>
-    <option value="chanakya">Chanakya - English</option>
-  </select>
-  <br/>
-<input  type="submit" id="Fortune" value="Get the quote" class="btn btn-primary"/>
+<div class="page-header">
+  <h1>Fortune Cookies (Random Quotes)</h1>
+</div>
+<p>Enter the text for getting a random quote with the given string in the below text area.</p>
 
-        </br>
-</fieldset>
-        </form>
-  <hr/>
-  <div class="hide alert alert-info"id="progress"></div>
-  <div class="hide alert alert-success"id="successmessage"></div>
-  <div class="hide alert alert-error"id="error"></div>
-  <div class="hide alert alert-success "id="result"></div></div>
+<form class="form-horizontal">
+  <div class="form-group">
+    <label class="control-label col-sm-3">Search word (optional)</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name='input_text' id='input_text'/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-3">Collection</label>
+    <div class="col-sm-4">
+      <select id="database" name="dictionary" class="form-control">
+        <option value="malayalam_proverbs">Proverbs - Malayalam</option>
+        <option value="thirukkural">Thirukkural - Tamil and English</option>
+        <option value="chanakya">Chanakya - English</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-4">
+      <input type="submit" id="Fortune" value="Get the quote" class="btn btn-default"/>
+    </div>
+  </div>
+</form>
+
+<div class="silpa-hide alert alert-info" id="progress"></div>
+<div class="silpa-hide alert alert-danger" id="error"></div>
+<div class="silpa-hide alert alert-success" id="result"></div>
+<hr/>
 <div class="well">
-<h3>Python fortune API</h3>
+  <h3>Python fortune API</h3>
   This service provides random quotes
   <ul>
     <li>Method: modules.Fortune.fortune
@@ -85,5 +99,7 @@
         many past lives continue to be cultivated\n in this birth by virtue of
         the link (yoga) of this present\n life to the previous ones.\n"
       </pre>
+    </li>
+  </ul>
 </div>
 {% endblock %}
