@@ -56,7 +56,7 @@
   <div class="form-group">
     <label class="control-label col-sm-3">Search word (optional)</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name='input_text' id='input_text'/>
+      <input type="text" class="form-control ime" name='input_text' id='input_text'/>
     </div>
   </div>
   <div class="form-group">
@@ -90,16 +90,18 @@
         <li>arg2 : Search word(optional)</li>
         <li>Return : Random quote</li>
       </ul>
-      <pre class="code">
-        >>>print fortune.fortune('chanakya')
-        Do not inhabit a country where you are not respected,\n cannot earn your
-        livelihood,have no friends, or cannot\n acquire knowledge.\n"
-        >>>print fortune.fortune('chanakya','charity')
-        " The good habits of charity, learning and austerity\n practised during
-        many past lives continue to be cultivated\n in this birth by virtue of
-        the link (yoga) of this present\n life to the previous ones.\n"
-      </pre>
     </li>
   </ul>
+  <pre class="code">
+>>>print fortune.fortune('chanakya')
+"Do not inhabit a country where you are not respected,
+cannot earn your livelihood, have no friends, or cannot
+acquire knowledge."
+>>>print fortune.fortune('chanakya','charity')
+"The good habits of charity, learning and austerity
+practised during many past lives continue to be cultivated
+in this birth by virtue of the link (yoga) of this present
+life to the previous ones."
+  </pre>
 </div>
 {% endblock %}
