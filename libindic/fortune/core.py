@@ -18,7 +18,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #
-# If you find any bugs or have any suggestions email: santhosh.thottingal@gmail.com
+# If you find any bugs or have any suggestions email:
+# santhosh.thottingal@gmail.com
 
 
 import random
@@ -27,16 +28,18 @@ import os
 
 
 class Fortune:
+
     """
     The fortune class. Instantiate to get access to the methods.
     """
+
     def fortunes(self, infile, pattern=None):
         """ Yield fortunes as lists of lines """
         quotes = []
         results = []
         quote = ''
         for line in infile:
-            #line = unicode(line)
+            # line = unicode(line)
             if line == "%\n":
                 quotes.append(quote)
                 quote = ''
