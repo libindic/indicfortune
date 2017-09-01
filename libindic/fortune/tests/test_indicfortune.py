@@ -17,11 +17,20 @@ class IndicFortuneTest(TestCase):
 
     def test_fortune_search(self):
         self.assertIn(self.fortune.fortune("chanakya", "daughter"),
-                [
-                     " Give your daughter in marriage to a good family, engage\n your son in learning, see that your enemy comes to grief,\n and engage your friends in dharma. (Krsna consciousness).\n",
-                     " Residing in a small village devoid of proper living\n facilities, serving a person born of a low family,\n unwholesome food, a frowning wife, a foolish son, and a\n widowed daughter burn the body without fire.\n",
-                     " Kings speak for once, men of learning once, and the\n daughter is given in marriage once. All these things\n happen once and only once.\n"
-                ])
+                      [""" Give your daughter in marriage to a good family, engage
+ your son in learning, see that your enemy comes to grief,
+ and engage your friends in dharma. (Krsna consciousness).
+""",
+                       """ Residing in a small village devoid of proper living
+ facilities, serving a person born of a low family,
+ unwholesome food, a frowning wife, a foolish son, and a
+ widowed daughter burn the body without fire.
+""",
+                       """ Kings speak for once, men of learning once, and the
+ daughter is given in marriage once. All these things
+ happen once and only once.
+"""
+                       ])
 
     def test_unavailable(self):
-        self.assertRaises(IOError,self.fortune.fortune, "randomDictionary")
+        self.assertRaises(IOError, self.fortune.fortune, "randomDictionary")
