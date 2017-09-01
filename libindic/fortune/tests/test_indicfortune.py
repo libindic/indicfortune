@@ -12,9 +12,6 @@ class IndicFortuneTest(TestCase):
         super(IndicFortuneTest, self).setUp()
         self.fortune = Fortune()
 
-    def test_fortune(self):
-        self.assertIsInstance(self.fortune.fortune("chanakya"), unicode)
-
     def test_fortune_search(self):
         self.assertIn(self.fortune.fortune("chanakya", "daughter"),
                       [""" Give your daughter in marriage to a good family, engage
